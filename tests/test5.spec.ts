@@ -23,7 +23,7 @@ test('Sending a message and contacting the website', async ({ page }) => {
   await homePage.clickSendMessage();
 
 
-  //const isMessageSuccessful = await homePage.isMessageSuccessful();
-  //expect(isMessageSuccessful).toBeTruthy();
+  const isMessageSuccessful = await homePage.isMessageSuccessful();
+  expect(isMessageSuccessful).toBeTruthy();
 
 });
