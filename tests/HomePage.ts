@@ -44,7 +44,7 @@ export class HomePage {
     await this.page.getByLabel('Message:').fill(message);
   }
   async navigateToSignUp() {
-    const signUpLink = await this.page.waitForSelector('#signUpLink', { timeout: 5000 });
+    const signUpLink = await this.page.waitForSelector('#signin2', { timeout: 5000 });
     await signUpLink.click();
   }
 
@@ -57,9 +57,18 @@ export class HomePage {
   async clickSignUpButton() {
     await this.page.click('text=Sign up');
   }
-
   async isRegistrationSuccessful() {
-    return await this.page.waitForSelector('text=User is successfully registered', { timeout: 5000 });
+    try {
+      await Promise.all([
+        this.page.waitForSelector('text=Sign up successful.', { timeout: 5000 }),
+        this.page.waitForEvent('dialog')
+      ]);
+
+      return true;
+    } catch (error) {
+     
+      return false;
+    }
   }
   async navigateToPhones() {
     await this.page.click('text=Phones');
@@ -120,7 +129,7 @@ async clickSendMessage() {
   }
   async isMessageSuccessful() {
     const successMessage = await this.page.waitForSelector(':has-text("Thanks for the message!!")', { timeout: 60000 });
-    return successMessage !== null; // Return true if the element is found, false otherwise
+    return successMessage !== null; 
   }
 }
 

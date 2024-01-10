@@ -32,3 +32,5 @@ Validating the Demoblaze website's behavior, finding and resolving any possible 
 RUNNING TESTS: 
 
 The tests are complete and functional; however, one of them displays a failure for the categories section, where the website is not operating correctly. You may use "npx playwright test" in the terminal to test the tests after importing them into your VSCO or another IDME that you are using.
+
+Thank you for your interest in this project! Feel free to reach out for further assistance or contribute to improve these tests.
