@@ -19,12 +19,12 @@ test.describe('Demo Blaze - Categories - Sorting Functionality - test2', () => {
     const websiteTitle = await homePage.getTitle();
     expect(websiteTitle).toContain('STORE');
 
-    await homePage.navigateToCategories('Laptops');
+    await homePage.navigateToCategories('Monitors');
 
     const categoryTitle = await homePage.getCategoryTittle();
-    expect(categoryTitle).toContain('Laptops');
+    expect(categoryTitle).toContain('Monitors');
 
-    const isLaptopsCategoryOpen = await homePage.isCategoryOpen('Laptops');
+    const isLaptopsCategoryOpen = await homePage.isCategoryOpen('Monitors');
     expect(isLaptopsCategoryOpen).toBe(true);
 
     console.log('Test steps executed successfully.');
@@ -33,4 +33,3 @@ test.describe('Demo Blaze - Categories - Sorting Functionality - test2', () => {
     console.log('Test Execution date:', executionDate);
   });
 });
-

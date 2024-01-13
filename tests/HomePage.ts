@@ -1,4 +1,3 @@
-// pages/HomePage.ts
 import { Page } from '@playwright/test';
 
 export class HomePage {
@@ -47,28 +46,24 @@ export class HomePage {
     const signUpLink = await this.page.waitForSelector('#signin2', { timeout: 5000 });
     await signUpLink.click();
   }
+  async navigateToLogin() {
+    const signUpLink = await this.page.waitForSelector('#login2', { timeout: 5000 });
+    await signUpLink.click();
+  }
 
   async fillRegistrationForm(username: string, password: string) {
     await this.page.fill('#sign-username', username);
     await this.page.fill('#sign-password', password);
-    
   }
-
   async clickSignUpButton() {
     await this.page.click('text=Sign up');
   }
+  
+  async clickLoginButton() {
+    await this.page.click('text=Log in');
+  }
   async isRegistrationSuccessful() {
-    try {
-      await Promise.all([
-        this.page.waitForSelector('text=Sign up successful.', { timeout: 5000 }),
-        this.page.waitForEvent('dialog')
-      ]);
-
-      return true;
-    } catch (error) {
-     
-      return false;
-    }
+   return await this.page.textContent('text=User signed successfuly!',{ timeout: 60000 });
   }
   async navigateToPhones() {
     await this.page.click('text=Phones');
@@ -78,21 +73,35 @@ export class HomePage {
     await this.page.click('text=Samsung galaxy s7');
     await this.page.waitForLoadState('load');
   }
+  
+  async Productdeleted() {
+    await this.page.waitForLoadState('load');
+  }
 
   async addToCart() {
     await this.page.waitForSelector('text=Add to cart', { timeout: 6000 });
     await this.page.click('text=Add to cart', { timeout: 6000 });
+  }
+  
+  async delete() {
+    await this.page.waitForSelector('text=Delete', { timeout: 6000 });
+    await this.page.click('text=Delete', { timeout: 6000 });
   }
 
   async goToCart() {
     await this.page.click('text=Cart', { timeout: 6000 });
     await this.page.waitForSelector('text=Products');
   }
+  
+  async goToHome() {
+    await this.page.click('text=HOME', { timeout: 6000 });
+    await this.page.waitForSelector('text=CATEGORIES');
+  }
 
   async placeOrder() {
     const placeOrderButton = await this.page.getByRole('button', { name: 'Place order' });
     await placeOrderButton.click();
-    await this.page.waitForSelector('#orderModalLabel');
+    await this.page.waitForSelector('#orderModalLabel',{ timeout: 6000 });
   }
 
   async fillOrderDetails(name: string, country: string, city: string, card: string) {
@@ -108,7 +117,7 @@ export class HomePage {
   }
 
   async getConfirmationText() {
-    return await this.page.textContent('text=Thank you for the purchase!');
+    return await this.page.textContent('text=Thank you for the purchase!',{ timeout: 60000 });
   }
   
   async navigateToCategories() {
@@ -130,6 +139,11 @@ async clickSendMessage() {
   async isMessageSuccessful() {
     const successMessage = await this.page.waitForSelector(':has-text("Thanks for the message!!")', { timeout: 60000 });
     return successMessage !== null; 
+  }
+  
+  async isNewMPDVisible() {
+    const newMessageText = await this.page.textContent('text=Product description');
+    return newMessageText.includes('Product description');
   }
 }
 

@@ -1,4 +1,3 @@
-// tests/contactTest.ts
 import { test, expect } from '@playwright/test';
 import { HomePage } from './HomePage';
 
