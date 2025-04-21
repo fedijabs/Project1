@@ -8,7 +8,7 @@ Before running the tests, ensure that you have the following prerequisites insta
 Node.js 
 VS Code(recommendable)
 
-Installation
+# Installation
 
 Playwright Test is an extension for Visual Studio Code to run and debug tests.
 Install the extension directly from VSCode and then write these commands in terminal:
@@ -20,16 +20,16 @@ To make sure that the application is running locally or is accessible by writing
 
 npm test 
 
-CONFIGURATION:
+ # CONFIGURATION:
 
 config/config.ts file is  where you can find the configuration.
 For any of your particular setup, change the BASE_URL and other variables as necessary for your test.
 
-GOAL:
+ # GOAL:
 
 Validating the Demoblaze website's behavior, finding and resolving any possible problems with user interactions, functionality, and overall user experience are the main goals of this project. Both medium- and high-level scenarios are covered in the tests, which provide a reliable method of feature verification.
 
-RUNNING TESTS: 
+# RUNNING TESTS: 
 
 The tests are complete and functional; however, one of them displays a failure for the categories section, where the website is not operating correctly. You may use "npx playwright test" in the terminal to test the tests after importing them into your VSCO or another IDME that you are using.
 
